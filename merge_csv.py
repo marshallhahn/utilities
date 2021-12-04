@@ -7,12 +7,12 @@ import sys
 arguments = sys.argv
 
 # Use argument 1 as the folder path containing the csv files
-path = arguments[1:]
+path = ' '.join(arguments[1:])
 
 # Get all of the CSV files in the folder
 all_files = glob.glob(os.path.join(path, "*.csv"))
 
-writer = pd.ExcelWriter('_output.xlsx', engine='xlsxwriter')
+writer = pd.ExcelWriter(os.path.join(path, 'output.xlsx'), engine='xlsxwriter')
 
 for f in all_files:
     df = pd.read_csv(f)
